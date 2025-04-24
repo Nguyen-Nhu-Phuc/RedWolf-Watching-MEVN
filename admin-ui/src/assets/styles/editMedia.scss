@@ -1,0 +1,24 @@
+@import './globalStyle.scss';
+
+.form-group {
+    margin: 28px 0;
+
+    .form-control-label {
+        text-align: right;
+        padding: 7px;
+    }
+
+    .space-empty {
+        height: 28px;
+    }
+}
+
+[class*="btn-show-hide"] {
+    text-decoration: none;
+    box-shadow: none;
+    color: $primary-color;
+}
+
+.desc-content {
+    border-radius: 0.25rem;
+}

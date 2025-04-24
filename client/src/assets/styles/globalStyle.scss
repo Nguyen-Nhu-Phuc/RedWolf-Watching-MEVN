@@ -1,0 +1,220 @@
+
+$primary-color: rgb(255, 0, 0);
+$primary-color-impress: rgb(178, 0, 0);
+$white-color: #fff;
+$dark-color: #000;
+$black-color: #131313;
+$black-color-lighter: #202020;
+$black-color-lighter-impress: #333;
+$black-text-color: #333;
+
+$background-color-dropdown-menu: rgb(19, 19, 19);
+
+$width-logo: 86px;
+
+$height-img-header: 640px;
+$height-avatar-cast-lg: 320px;
+$height-avatar-cast-md: 420px;
+$height-avatar-cast-sm: 340px;
+$height-header-bar: 64px;
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+// Background image of intro
+.background-img-intro {
+    width: 100%;
+    height: $height-img-header;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+.media-rating {
+    display: inline-flex;
+    align-items: center;
+}
+
+.row {
+    margin: 28px auto;
+}
+
+.separate::after {
+    content: "";
+    display: block;
+    border-bottom: 5px solid $primary-color;
+    padding-bottom: 4px;
+}
+
+.title-menu {
+    margin: 0px;
+    color: $white-color;
+    font-size: 1.5rem;
+    line-height: 1.334;
+    letter-spacing: 0em;
+    font-weight: 700;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0 0 0 8px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    min-width: 64px;
+    padding: 8px 22px;
+    border-radius: 4px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: none;
+    background-color: transparent;
+    
+    &.active {
+        background-color: $primary-color;
+    }
+
+    &.active:hover {
+        box-shadow: none;
+        text-decoration: none;
+        background-color: $primary-color-impress;
+    }
+}
+
+.segregate {
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+    inset: 0px;
+    border-radius: inherit;
+}
+
+// Card film
+.card {
+    position: relative;
+    cursor: pointer;
+    border-radius: 0;
+    transition: transform 0.2s;
+    
+    .card-body {
+        display: none;
+        position: absolute;
+        inset: 0;
+        color: $primary-color;
+        font-size: 28px;
+        flex-direction: column;
+        
+        .empty-space {
+            flex: 1;
+        }
+        
+        .card-title,
+        card-text {
+            font-weight: 750;
+        }
+    }
+    
+    .card-img-top {
+        border-radius: 0;
+    }
+
+    &:hover {
+        transform: scale(0.92);
+
+        .card-body {
+            display: flex;
+            background-color: rgba(10, 10, 10, 0.8);
+        }
+    }
+}
+
+.font-favorites {
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #fff;
+
+    &.active-favorites {
+        color: red;
+        cursor: default;
+    }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    .container {
+        margin-top: 20px;
+        padding: 0;
+
+        .row {
+            margin: 20px 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 739px) {
+    .title-menu {
+        font-size: 1rem;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    .container {
+
+        .row {
+            margin: 12px 0;
+        }
+    }
+
+    .separate::after {
+        border-bottom: 3px solid $primary-color;
+        padding-bottom: 2px;
+    }
+
+    .list-item {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .card {
+
+        &:hover {
+            .card-body {
+                display: none;
+            }
+        }
+    }
+}
+

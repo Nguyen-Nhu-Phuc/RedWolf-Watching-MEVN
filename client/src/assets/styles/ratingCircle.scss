@@ -1,0 +1,97 @@
+$rating-size: 3.2rem;
+$rating-size-sm: 2.2rem;
+$bar-size: 0.3rem;
+$bar-size-sm: 0.2rem;
+$background-color: #e7f2fa;
+$rating-color-default: #2980b9;
+$rating-color-background: #c7e1f3;
+$rating-color-good: #27ae60;
+$rating-color-meh: #f1c40f;
+$rating-color-bad: #e74c3c;
+
+/* Rating item */
+.rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+
+    background: $rating-color-default;
+    color: $rating-color-default;
+    width: $rating-size;
+    height: $rating-size;
+
+    /* Basic style for the text */
+    font-size: calc($rating-size / 2.5);
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Rating circle content */
+.rating span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.rating span small {
+    font-size: 0.5em;
+    font-weight: 900;
+    align-self: center;
+}
+
+/* Bar mask, creates an inner circle with the same color as thee background */
+.rating::after {
+    content: "";
+    position: absolute;
+    inset: $bar-size;
+    background: $background-color;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* Bar background */
+.rating::before {
+    content: "";
+    position: absolute;
+    inset: $bar-size;
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem $rating-color-background;
+    z-index: -1;
+}
+
+/* Classes to give different colors to ratings, based on their score */
+.rating.good {
+    background: $rating-color-good;
+    color: $rating-color-good;
+}
+
+.rating.meh {
+    background: $rating-color-meh;
+    color: $rating-color-meh;
+}
+
+.rating.bad {
+    background: $rating-color-bad;
+    color: $rating-color-bad;
+}
+
+@media only screen and (max-width: 739px) {
+    .rating {
+        width: $rating-size-sm;
+        height: $rating-size-sm;
+        font-size: calc($rating-size-sm / 2.5);
+        font-weight: 500;
+    }
+
+    .rating::after {
+        inset: $bar-size-sm;
+    }
+
+    .rating::before {
+        inset: $bar-size-sm;
+    }
+}

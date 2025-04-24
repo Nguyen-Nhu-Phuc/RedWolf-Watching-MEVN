@@ -1,0 +1,49 @@
+$primary-color: rgb(255, 0, 0);
+$primary-color-impress: rgb(178, 0, 0);
+$white-color: #fff;
+$dark-color: #000;
+$black-color: #131313;
+$black-color-lighter: #202020;
+$black-color-lighter-impress: #333;
+$blue-color: #1d88fa;
+
+$width-logo: 80px;
+// $width-card-home: 17.344rem;
+// $width-img-casts: 181px;
+// $height-img-casts: 272px;
+
+// $height-card-img-home: 412px;
+// $height-card-img: 350px;
+// $height-img-header: 700px;
+
+.separate::after {
+    content: "";
+    display: block;
+    border-bottom: 5px solid $primary-color;
+    padding-bottom: 4px;
+    width: 20%;
+}
+
+.title-menu {
+    margin: 0px;
+    color: $white-color;
+    font-size: 1.5rem;
+    line-height: 1.334;
+    letter-spacing: 0em;
+    font-weight: 700;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.btn-modal {
+    box-shadow: none;
+}

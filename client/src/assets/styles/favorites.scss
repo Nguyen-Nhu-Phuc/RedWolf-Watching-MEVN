@@ -1,0 +1,45 @@
+
+.list {
+    display: flex;
+    justify-content: start;
+}
+
+.list-favorites-item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.card {
+    background: transparent;
+    border: 1px solid $white-color;
+    height: 400px;
+}
+
+.remove {
+    background-color: $primary-color;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: 12px;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary-color-impress;
+    }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    .card {
+        height: 260px;
+    }
+}
+
+@media only screen and (max-width: 739px) {
+    .card {
+        height: 200px;
+    }
+}

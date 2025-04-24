@@ -1,0 +1,52 @@
+@import './globalStyle.scss';
+
+
+.modal-content {
+    background-color: $black-color;
+    color: $white-color;
+
+    .modal-header {
+        border-bottom: 1px solid $primary-color;
+
+        .modal-title {
+            position: relative;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 3%;
+            right: 4%;
+            color: $white-color;
+        }
+    }
+
+    .modal-footer {
+        width: 100%;
+        border: 0;
+        flex-direction: column;
+
+        .btn {
+            color: $white-color;
+            width: 50%;
+            border: 0;
+        }
+
+        .btn-submit-form {
+            background-color: $primary-color;
+            &:hover {
+                background-color: $primary-color-impress;
+            }
+        }
+
+        .btn-form {
+            background-color: $black-color-lighter;
+            &:hover {
+                background-color: $black-color-lighter-impress;
+            }
+        }
+    }
+}
+
+.btn-close {
+    font-size: 1.5em;
+}

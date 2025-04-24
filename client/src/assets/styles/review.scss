@@ -1,0 +1,46 @@
+.list-review {
+    background-color: $black-color;
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    .review-poster-media {
+        width: 20%;
+        height: 25%;
+    }
+
+    .btn-remove {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $primary-color;
+        width: 84px;
+        height: 28px;
+        box-shadow: none;
+        font-weight: lighter;
+
+        &:hover {
+            background-color: $primary-color-impress;
+        }
+    }
+}
+
+.appreciate {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+}
+
+@media only screen and (max-width: 739px) {
+    .review-item {
+        min-height: 200px;
+
+        .media-name {
+            font-size: 1rem;
+        }
+    }
+}
