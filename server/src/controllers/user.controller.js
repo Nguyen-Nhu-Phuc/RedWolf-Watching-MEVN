@@ -20,23 +20,33 @@ const registerUser = async (req, res) => {
 
         const hash = await bcrypt.hash(password, 10);
 
-        // // Create user in DB
         const user = await User.create({ fullName, username, password: hash });
 
-        const token = jwt.sign(
+        const accessToken = jwt.sign(
             { data: user._id },
             process.env.JWT_SECRET,
-            { expiresIn: '24h' }
+            { expiresIn: '1h' } 
         );
 
+        const refreshToken = jwt.sign(
+            { data: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' } 
+        );
+
+        user.refreshToken = refreshToken;
+        await user.save();
+
         responseHandler.created(res, {
-            token,
+            accessToken,
+            refreshToken,
             ...user._doc
-        })
+        });
     } catch {
         responseHandler.error(res);
     }
 }
+
 
 // Login user, route POST /users/auth/login
 const loginUser = async (req, res) => {
@@ -53,23 +63,34 @@ const loginUser = async (req, res) => {
             return responseHandler.badRequest(res, 'Wrong password');
         }
 
-        const token = jwt.sign(
+        const accessToken = jwt.sign(
             { data: user._id },
             process.env.JWT_SECRET,
-            { expiresIn: '24h' }
+            { expiresIn: '1h' } 
         );
+
+        const refreshToken = jwt.sign(
+            { data: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
+        );
+
+        user.refreshToken = refreshToken;
+        await user.save();
 
         user.password = undefined;
 
         responseHandler.created(res, {
-            token,
+            accessToken,
+            refreshToken,
             ...user._doc,
             id: user._id
-        })
+        });
     } catch {
         responseHandler.error(res);
     }
 }
+
 
 // Soft delete user, route DELETE /users/:id
 const softDel = async (req, res) => {
@@ -170,14 +191,34 @@ const changePassword = async (req, res) => {
 }
 
 // List all user, GET /users/stored
+// const stored = async (req, res) => {
+//     try {
+//         var users = await User.find({});
+//         users = users.map(({ password, ...rest }) => {
+//             const item = rest._doc;
+//             item.password = undefined;
+//             return item;
+//         })
+//         responseHandler.ok(res, users);
+//     } catch {
+//         responseHandler.error(res);
+//     }
+// }
 const stored = async (req, res) => {
     try {
+        const user = await User.findById(req.user._id);
+
+        if (!user || !user.isAdmin) {
+            return responseHandler.forbidden(res, "Access denied. Admin only.");
+        }
+
         var users = await User.find({});
         users = users.map(({ password, ...rest }) => {
             const item = rest._doc;
             item.password = undefined;
             return item;
-        })
+        });
+
         responseHandler.ok(res, users);
     } catch {
         responseHandler.error(res);

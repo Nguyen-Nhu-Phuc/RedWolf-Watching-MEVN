@@ -6,41 +6,43 @@ import requestHandler from '../handlers/request.handler.js';
 import userController from '../controllers/user.controller.js';
 import User from '../models/user.model.js';
 
-
 const router = express.Router();
 
+// POST /users/auth/register
 router.post(
     '/auth/register',
     body('fullName')
-        .exists().withMessage('full name is required')
-        .isLength({ min: 3 }).withMessage('full name minimum 3 characters'),
+        .exists().withMessage('Full name is required')
+        .isLength({ min: 3 }).withMessage('Full name minimum 3 characters'),
     body('username')
-        .exists().withMessage('username is required')
-        .isLength({ min: 8 }).withMessage('username minimum 8 characters')
+        .exists().withMessage('Username is required')
+        .isLength({ min: 8 }).withMessage('Username minimum 8 characters')
         .custom(async value => {
             const user = await User.findOne({ username: value });
             if (user) {
-                return Promise.reject('username already used');
+                return Promise.reject('Username already used');
             }
         }),
     body('password')
-        .exists().withMessage('password is required')
-        .isLength({ min: 8 }).withMessage('password minimum 8 characters'),
-    requestHandler.validate,
+        .exists().withMessage('Password is required')
+        .isLength({ min: 8 }).withMessage('Password minimum 8 characters'),
+    requestHandler.validate,  
     userController.registerUser
 );
 
+// POST /users/auth/login
 router.post(
     '/auth/login',
     body('username')
-        .exists().withMessage('username is required')
-        .isLength({ min: 8 }).withMessage('username minimum 8 characters'),
+        .exists().withMessage('Username is required')
+        .isLength({ min: 8 }).withMessage('Username minimum 8 characters'),
     body('password')
-        .exists().withMessage('password is required')
-        .isLength({ min: 8 }).withMessage('password minimum 8 characters'),
-    requestHandler.validate,
+        .exists().withMessage('Password is required')
+        .isLength({ min: 8 }).withMessage('Password minimum 8 characters'),
+    requestHandler.validate,  
     userController.loginUser
 );
+
 
 router.patch('/password', tokenMiddleware.auth, userController.changePassword);
 
